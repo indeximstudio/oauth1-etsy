@@ -179,8 +179,7 @@ class Etsy extends Server
                 'headers' => $headers
             ]);
         } catch (BadResponseException $e) {
-            $this->handleTemporaryCredentialsBadResponse($e);
-            return null;
+            throw $this->getCredentialsExceptionForBadResponse($e, 'temporary credentials');
         }
 
         // Catch body and retrieve Etsy login_url
@@ -190,6 +189,29 @@ class Etsy extends Server
         $this->login_url = $data['login_url'];
 
         return $this->createTemporaryCredentials($response->getBody());
+    }
+    
+     /**
+     * @param BadResponseException $e
+     * @param string $type
+     * @return CredentialsException
+     */
+    protected function getCredentialsExceptionForBadResponse(
+        BadResponseException $e,
+        string $type
+    ): CredentialsException {
+        $response = $e->getResponse();
+        $body = $response->getBody();
+        $statusCode = $response->getStatusCode();
+
+        return new CredentialsException(
+            sprintf(
+                'Received HTTP status code [%s] with message "%s" when getting %s.',
+                $statusCode,
+                $body,
+                $type
+            )
+        );
     }
 
     /**
