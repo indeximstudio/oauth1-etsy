@@ -1,5 +1,5 @@
 {
-    "name": "gentor/oauth1-etsy",
+    "name": "indeximstudio/oauth1-etsy",
     "description": "Etsy API OAuth 1.0 Client Provider for The PHP League OAuth1-Client",
     "license": "MIT",
     "authors": [
@@ -23,7 +23,7 @@
         "etsy"
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": "^7.0",
         "league/oauth1-client": "1.7.0"
     },
     "require-dev": {
