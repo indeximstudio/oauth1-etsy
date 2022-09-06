@@ -5,7 +5,7 @@ namespace Gentor\OAuth1Etsy\Client\Server;
 use Gentor\OAuth1Etsy\Client\Signature\HmacSha1Signature;
 use GuzzleHttp\Exception\BadResponseException;
 use League\OAuth1\Client\Server\Server;
-use League\OAuth1\Client\Credentials
+use League\OAuth1\Client\Credentials;
 use League\OAuth1\Client\Server\User;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Signature\SignatureInterface;
