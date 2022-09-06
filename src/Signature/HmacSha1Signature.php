@@ -18,7 +18,7 @@ class HmacSha1Signature extends Signature
      *
      * @return string
      */
-    protected function baseString(UriInterface $url, $method = 'POST', array $parameters = array())
+    protected function baseString(UriInterface $url, string $method = 'POST', array $parameters = array()): string
     {
         $baseString = rawurlencode($method) . '&';
 
