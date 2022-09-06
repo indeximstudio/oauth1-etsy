@@ -193,7 +193,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function getAuthorizationUrl($temporaryIdentifier)
+    public function getAuthorizationUrl($temporaryIdentifier, array $options = [])
     {
         // Return the authorization url directly since it's provided by Etsy and contains all parameters
         return $this->urlAuthorization();
