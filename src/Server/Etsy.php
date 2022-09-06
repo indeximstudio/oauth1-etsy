@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Credentials;
 use League\OAuth1\Client\Server\User;
+use League\OAuth1\Client\Credentials\TemporaryCredentials;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Signature\SignatureInterface;
 use League\OAuth1\Client\Signature\HmacSha1Signature as LeagueHmacSha1Signature;
