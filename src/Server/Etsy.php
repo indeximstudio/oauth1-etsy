@@ -5,6 +5,7 @@ namespace Gentor\OAuth1Etsy\Client\Server;
 use Gentor\OAuth1Etsy\Client\Signature\HmacSha1Signature;
 use GuzzleHttp\Exception\BadResponseException;
 use League\OAuth1\Client\Server\Server;
+use League\OAuth1\Client\Credentials
 use League\OAuth1\Client\Server\User;
 use League\OAuth1\Client\Credentials\TokenCredentials;
 use League\OAuth1\Client\Signature\SignatureInterface;
@@ -70,7 +71,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlTemporaryCredentials()
+    public function urlTemporaryCredentials(): string
     {
         return self::API_URL . 'oauth/request_token?scope=' . $this->applicationScope;
     }
@@ -78,7 +79,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlAuthorization()
+    public function urlAuthorization(): string
     {
         return $this->login_url;
     }
@@ -86,7 +87,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlTokenCredentials()
+    public function urlTokenCredentials(): string
     {
         return self::API_URL . 'oauth/access_token';
     }
@@ -94,7 +95,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function urlUserDetails()
+    public function urlUserDetails(): string
     {
         return self::API_URL . 'users/__SELF__';
     }
@@ -102,7 +103,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function userDetails($data, TokenCredentials $tokenCredentials)
+    public function userDetails($data, TokenCredentials $tokenCredentials): User
     {
         $data = $data['results'][0];
 
@@ -128,15 +129,15 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function userEmail($data, TokenCredentials $tokenCredentials)
+    public function userEmail($data, TokenCredentials $tokenCredentials): ?string
     {
-        return;
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function userScreenName($data, TokenCredentials $tokenCredentials)
+    public function userScreenName($data, TokenCredentials $tokenCredentials): ?string
     {
         return $data['user']['login_name'];
     }
@@ -162,7 +163,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function getTemporaryCredentials()
+    public function getTemporaryCredentials(): TemporaryCredentials
     {
         $uri = $this->urlTemporaryCredentials();
 
@@ -193,7 +194,7 @@ class Etsy extends Server
     /**
      * {@inheritDoc}
      */
-    public function getAuthorizationUrl($temporaryIdentifier, array $options = [])
+    public function getAuthorizationUrl($temporaryIdentifier): string
     {
         // Return the authorization url directly since it's provided by Etsy and contains all parameters
         return $this->urlAuthorization();
